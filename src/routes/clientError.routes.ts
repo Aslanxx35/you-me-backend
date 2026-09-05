@@ -1,0 +1,1 @@
+import { Router } from 'express';import { authMiddleware,asyncHandler } from '../middleware';import { reportClientError } from '../controllers/clientError.controller';const r=Router();r.post('/',authMiddleware,asyncHandler(async(req,res)=>reportClientError(req,res)));export default r;
