@@ -1,0 +1,1 @@
+import { Router } from 'express';import { authMiddleware } from '../middleware';import { status,sync,verify,webhook } from '../controllers/subscription.controller';const r=Router();r.get('/status',authMiddleware,status);r.post('/sync',authMiddleware,sync);r.post('/verify',authMiddleware,verify);r.post('/webhook',webhook);export default r;
