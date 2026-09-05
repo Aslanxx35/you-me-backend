@@ -1,0 +1,3 @@
+import { Request,Response } from 'express';import { z } from 'zod';import { logger } from '../config/logger.config';import { Sentry } from '../config/sentry.config';
+const schema=z.object({message:z.string().min(1).max(5000),stack:z.string().max(20000).optional(),context:z.record(z.string()).optional()});
+export function reportClientError(req:Request,res:Response){const p=schema.parse(req.body);logger.error({userId:req.user?.id,client:p},'Client error');Sentry.captureException(new Error(p.message),{extra:{userId:req.user?.id,stack:p.stack,context:p.context}});res.status(202).json({success:true});}
