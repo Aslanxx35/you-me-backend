@@ -1,0 +1,2 @@
+import { natalChartSchema } from '../src/validators/chart.validator';
+describe('birth validation',()=>{test('31 February is rejected',()=>expect(natalChartSchema.safeParse({date:'2025-02-31',time:'12:00',city:'Izmir'}).success).toBe(false));test('future birth date is rejected',()=>expect(natalChartSchema.safeParse({date:'2999-01-01',time:'12:00',city:'Izmir'}).success).toBe(false));test('invalid time is rejected',()=>expect(natalChartSchema.safeParse({date:'1990-01-01',time:'25:99',city:'Izmir'}).success).toBe(false));});
