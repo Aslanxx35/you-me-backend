@@ -1,0 +1,9 @@
+export interface BirthDataInput { name?:string; date:string; time:string; city:string; houseSystem?:string; }
+export interface GeoLocation { lat:number; lon:number; timezone:string; utcOffsetMinutes:number; city:string; country:string; approximate?:boolean; }
+export interface PlanetPosition { planet:string; planetTR:string; longitude:number; sign:string; signTR:string; degree:number; degreeFormatted:string; isRetrograde:boolean; house:number; speed?:number; }
+export interface HouseCusp { house:number; longitude:number; sign:string; signTR:string; degree:number; degreeFormatted:string; }
+export interface AspectHit { planet1:string; planet2:string; type:string; typeTR:string; angle:number; orb:number; }
+export interface CalculationMeta { engine:'swisseph'|'moshier-fallback'; fallbackUsed:boolean; warnings:string[]; }
+export interface NatalChartResult { birthData:{date:string;time:string;city:string}; location:{lat:number;lon:number;timezone:string;utcOffsetMinutes:number}; julianDay:number; houseSystem:string; calculatedAt:string; engine:'swisseph'|'moshier-fallback'; calculationMeta:CalculationMeta; planets:PlanetPosition[]; houses:HouseCusp[]; angles:{ASC:number;MC:number;IC:number;DSC:number;ascSign:string;ascSignTR:string;ascFormatted:string}; aspects:AspectHit[]; sunSign:string; sunSignTR:string; moonSign:string; moonSignTR:string; ascendant:string; ascendantTR:string; }
+export interface TransitAspect { transitPlanet:string; natalPlanet:string; type:string; typeTR:string; angle:number; orb:number; phase:'applying'|'separating'|'exact'; transitHouse:number; natalHouse:number; }
+export interface TransitResult { date:string; time:string; transitPlanets:PlanetPosition[]; natalPlanets:PlanetPosition[]; transitHouses:HouseCusp[]; transitAngles: NatalChartResult['angles']; aspects:TransitAspect[]; calculationMeta:CalculationMeta; }
