@@ -1,0 +1,4 @@
+import { buildCompositeChart } from '../src/services/composite.service';
+const p=(planet:string,longitude:number)=>({planet,planetTR:planet,longitude,sign:'Aries',signTR:'Koç',degree:longitude%30,degreeFormatted:'',isRetrograde:false,house:1});
+const chart=(asc:number,mc:number,planets:any[])=>({birthData:{date:'2000-01-01',time:'12:00',city:'X'},location:{lat:0,lon:0,timezone:'UTC',utcOffsetMinutes:0},julianDay:0,houseSystem:'Placidus',calculatedAt:'',engine:'swisseph' as const,calculationMeta:{engine:'swisseph' as const,fallbackUsed:false,warnings:[]},planets,houses:[],angles:{ASC:asc,MC:mc,IC:(mc+180)%360,DSC:(asc+180)%360,ascSign:'Aries',ascSignTR:'Koç',ascFormatted:''},aspects:[],sunSign:'Aries',sunSignTR:'Koç',moonSign:'Aries',moonSignTR:'Koç',ascendant:'Aries',ascendantTR:'Koç'});
+test('composite uses circular midpoint',()=>{const c=buildCompositeChart(chart(10,20,[p('Sun',350)]),chart(30,40,[p('Sun',10)]));expect(c.planets[0].longitude).toBe(0);});
