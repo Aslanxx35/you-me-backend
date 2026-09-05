@@ -1,0 +1,1 @@
+import { Router } from 'express';import { authMiddleware,asyncHandler } from '../middleware';import { getExtendedNatalChart } from '../controllers/natal.controller';const r=Router();r.use(authMiddleware);r.post('/natal-chart/extended',asyncHandler(getExtendedNatalChart));export default r;
