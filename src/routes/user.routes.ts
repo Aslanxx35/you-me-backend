@@ -1,0 +1,2 @@
+import {Router} from 'express'; import {authMiddleware} from '../middleware'; import {me,birthData,updateProfile,exportData,deleteAccount} from '../controllers/user.controller';
+const r=Router(); r.use(authMiddleware); r.get('/me',me); r.patch('/me',updateProfile); r.delete('/me',deleteAccount); r.get('/me/export',exportData); r.get('/me/birth-data',async(req,res)=>birthData(req,res)); r.put('/me/birth-data',async(req,res)=>birthData(req,res)); export default r;
