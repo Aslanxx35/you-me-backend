@@ -1,0 +1,3 @@
+import { MoonPhaseResult, MoonPhaseName } from '../../models/astro.models';
+const CENTERS:[number,MoonPhaseName][]=[[0,'Yeni Ay'],[45,'Hilal'],[90,'İlk Dördün'],[135,'Şişkin Ay'],[180,'Dolunay'],[225,'Küçülen Şişkin Ay'],[270,'Son Dördün'],[315,'Küçülen Hilal']];
+export function getMoonPhase(sunLongitude:number,moonLongitude:number):MoonPhaseResult{const angle=((moonLongitude-sunLongitude)%360+360)%360;let best:MoonPhaseName='Yeni Ay',bestDist=Infinity;for(const [center,name] of CENTERS){const d=Math.min(Math.abs(angle-center),360-Math.abs(angle-center));if(d<bestDist){bestDist=d;best=name;}}const illumination=Math.round((1-Math.cos(angle*Math.PI/180))*50);return{phase:best,illumination,angleDegrees:Number(angle.toFixed(2))};}
